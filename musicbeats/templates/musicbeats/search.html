@@ -1,0 +1,54 @@
+{% extends 'musicbeats/basic.htm' %}
+
+{% block title %}All Songs{% endblock %}
+
+{% block body %}
+<script>
+    {% if message %}
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: '{{ message }}',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    {% endif %}
+</script>
+
+<div class="container">
+    {% if songs %}
+        {% for song in songs %}
+            <div>
+                <div style="padding-top: 2%;">
+
+                </div>
+                <h5>Title: {{ song.title }}</h5>
+                <h5 style="padding-top: 2%;">Category: {{ song.category }}</h5>
+                <h5 style="padding-top: 2%;">Movie: {{ song.movie }}</h5>
+                <h5 style="padding-top: 2%;">Singer: {{ song.singer }}</h5>
+                <div style="padding-top: 2%;">
+                    <a href="{{ song.credit }}" target="_blank" style="color: green;">Credit: {{ song.credit }}</a>
+                </div>
+                <audio controls style="padding-top: 2%;">
+                    <source src="{{ song.audio }}" type="audio/mp3">
+                </audio>
+                <div style="padding-top: 2%;">
+                    <div class="row" style="padding-left: 3%;">
+                        <a href="/musicbeats/watchlater/{{ song.id }}" class="btn btn-outline-danger" onclick="return confirm('Add to Listen Later?')">Add to Listen Later</a>
+                        <a download style="padding-left: 1%;" class="btn btn-outline-primary" href="{{ song.audio }}">Download</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No songs found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    // Additional JavaScript, if needed
+</script>
+{% endblock %}

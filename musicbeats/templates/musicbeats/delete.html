@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Music</title>
+</head>
+<body>
+    <h2>Delete Music</h2>
+    <form method="post">
+        {% csrf_token %}
+        <label for="music_name">Enter the name of the music to delete:</label>
+        <input type="text" id="music_name" name="music_name" required>
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>
